@@ -57,10 +57,6 @@
     </div>
   </form>
 
-  <form class="registration-card" @submit.prevent="submitCard" v-if="card === 2">
-    <h2>Оплата</h2>
-  </form>
-
 </template>
 
 <script>
