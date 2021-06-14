@@ -1,22 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png"/>
-  <HelloWorld msg="Hello Vue 3 + Viteq"/>
+  <Registration/>
 </template>
 
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
-
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+import Registration from './components/Registration.vue';
+import ResetCss from './assets/css/reset.css';
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  font-size: 14px;
+}
+
+* {
+  font-family: inherit;
+}
+
+.btn {
+  padding: 6px 15px;
+
+  text-transform: uppercase;
+
+  background-color: transparent;
+  border: 1px solid #2c3e50;
 }
 </style>
