@@ -27,4 +27,9 @@ html {
   background-color: transparent;
   border: 1px solid #2c3e50;
 }
+
+#app {
+  display: flex;
+  justify-content: center;
+}
 </style>

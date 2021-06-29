@@ -110,7 +110,7 @@ export default {
   padding: 15px 10px;
   justify-content: center;
 
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 
 .registration-card h2 {
