@@ -1,11 +1,15 @@
 export default {
   namespaced: true,
   state: () => ({
+    email: '',
+    password: '',
+
     name: '',
     phone: '',
     age: '',
+
     children: '',
-    adults: '',
+    players: '',
   }),
   mutations: {
     setName(state, payload) {
@@ -20,8 +24,14 @@ export default {
     setChildren(state, payload) {
       state.children = payload;
     },
-    setAdults(state, payload) {
-      state.adults = payload;
+    setPlayers(state, payload) {
+      state.players = payload;
+    },
+    setEmail(state, payload) {
+      state.email = payload;
+    },
+    setPassword(state, payload) {
+      state.password = payload;
     },
   },
   actions: {
@@ -37,8 +47,14 @@ export default {
     setChildren({ commit }, data) {
       commit('setChildren', data);
     },
-    setAdults({ commit }, data) {
-      commit('setAdults', data);
+    setPlayers({ commit }, data) {
+      commit('setPlayers', data);
+    },
+    setEmail({ commit }, data) {
+      commit('setEmail', data);
+    },
+    setPassword({ commit }, data) {
+      commit('setPassword', data);
     },
   },
 };

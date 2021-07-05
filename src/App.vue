@@ -1,35 +1,16 @@
 <template>
-  <Registration/>
+  <router-view></router-view>
 </template>
 
-<script setup>
-import Registration from './components/Registration.vue';
-import ResetCss from './assets/css/reset.css';
+<script>
+
 </script>
 
 <style>
-html {
-  font-family: 'Open Sans', sans-serif;
-  text-align: center;
-  color: #2c3e50;
-  font-size: 14px;
-}
-
-* {
-  font-family: inherit;
-}
-
-.btn {
-  padding: 6px 15px;
-
-  text-transform: uppercase;
-
-  background-color: transparent;
-  border: 1px solid #2c3e50;
-}
-
-#app {
-  display: flex;
-  justify-content: center;
-}
+@import './assets/css/variables.css';
+@import './assets/css/reset.css';
+@import './assets/css/ui.css';
+@import './assets/css/common.css';
 </style>
+
+

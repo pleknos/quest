@@ -1,5 +1,27 @@
 <template>
-  <form class="registration-card" @submit.prevent="submitCard" v-if="card === 1">
+  <form class="card" @submit.prevent="submitCard" v-if="card === 1">
+    <h2>Регистрация</h2>
+
+    <div class="input-group">
+      <label for="email">E-mail</label>
+      <input type="email" :value="user.email" placeholder="Введите e-mail"
+             id="email" @change="setValue('Email', $event)" required/>
+    </div>
+
+    <div class="input-group">
+      <label for="password">E-mail</label>
+      <input type="password" :value="user.password" placeholder="Введите пароль"
+             id="password" @change="setValue('Password', $event)" required/>
+    </div>
+
+    <div class="input-group button-group">
+      <router-link class="btn btn-prev" to="/">Назад</router-link>
+      <button type="submit" class="btn btn-next">Вперёд</button>
+    </div>
+  </form>
+
+
+  <form class="card" @submit.prevent="submitCard" v-if="card === 2">
     <h2>Капитан команды</h2>
 
     <div class="input-group">
@@ -24,44 +46,38 @@
     </div>
 
     <div class="input-group button-group">
+      <button class="btn btn-prev" @click="prevCard">Назад</button>
       <button type="submit" class="btn btn-next registration-forward">Вперёд</button>
     </div>
   </form>
 
-  <form class="registration-card" @submit.prevent="submitCard" v-if="card === 2">
+  <form class="card" @submit.prevent="submitRegistration" v-if="card === 3">
     <h2>Команда</h2>
 
     <div class="input-group">
-      <label for="adults">Количество взрослых</label>
-      <input type="number" :value="user.adults" placeholder="Количество взрослых в команде"
-             id="adults" @change="setValue('Adults', $event)" required/>
+      <label for="players">Количество Игроков</label>
+      <input type="number" :value="user.players" placeholder="Количество взрослых в команде"
+             id="players" @change="setValue('Players', $event)" required/>
     </div>
 
     <div class="input-group">
-      <label for="children">Количество детей</label>
-      <input type="text" :value="user.children" placeholder="Количество детей в команде" id="children"
+      <label for="children">Есть дети</label>
+      <input type="checkbox" :checked="user.children" placeholder="Количество детей в команде" id="children"
              @change="setValue('Children', $event)">
     </div>
 
     <div class="input-group button-group">
-      <button class="btn btn-prev registration-btn" @click="prevCard">Назад</button>
-      <button type="submit" class="btn btn-next registration-btn">Вперёд</button>
+      <button class="btn btn-prev" @click="prevCard">Назад</button>
+      <button type="submit" class="btn btn-green">Завершить регистрацию</button>
     </div>
   </form>
-
-  <form class="registration-card" v-if="card === 3">
-    <h2>Оплата</h2>
-
-    <div class="input-group button-group">
-      <button class="btn btn-prev registration-btn" @click="prevCard">Назад</button>
-    </div>
-  </form>
-
 </template>
 
 <script>
 import InputMask from 'inputmask';
 import { mapState, mapActions } from 'vuex';
+
+import { server } from '@/url.json';
 
 export default {
   data() {
@@ -75,7 +91,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('user', [ 'setName', 'setPhone', 'setAge', 'setAdults', 'setChildren' ]),
+    ...mapActions('user', [ 'setName', 'setPhone', 'setAge', 'setPlayers', 'setChildren' ]),
     submitCard() {
       if (this.user.age < 18) {
         alert('Возраст капитана команды должен быть от 18 лет');
@@ -84,6 +100,19 @@ export default {
 
       this.nextCard();
     },
+    async submitRegistration() {
+      const response = await fetch(`${ server }/register`, {
+        method: 'POST',
+        body: JSON.stringify(this.user),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+
+      const responseJson = await response.json();
+
+      console.log(responseJson);
+    },
     nextCard() {
       this.card++;
     },
@@ -91,74 +120,19 @@ export default {
       this.card--;
     },
     setValue(field, event) {
-      this.$store.commit(`user/set${ field }`, event.target.value);
+      if (event.target.type === 'checkbox') {
+        this.$store.commit(`user/set${ field }`, event.target.checked);
+      } else {
+        this.$store.commit(`user/set${ field }`, event.target.value);
+      }
     },
   },
   mounted() {
-    Inputmask().mask('input[type="tel"]');
+    InputMask().mask('input[type="tel"]');
   },
 };
 </script>
 
 <style scoped>
-.registration-card {
-  min-height: 90vh;
-  margin: 10px;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  padding: 15px 10px;
-  justify-content: center;
-
-  /*border: 1px solid black;*/
-}
-
-.registration-card h2 {
-  margin-bottom: 30px;
-
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.registration-btn {
-  margin-top: 15px;
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.input-group:not(:last-of-type) {
-  margin-bottom: 20px;
-}
-
-.input-group label {
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.input-group label .small {
-  font-size: 10px;
-  font-weight: 400;
-  text-transform: lowercase;
-}
-
-.input-group input {
-  width: 80%;
-  padding: 5px 10px;
-  margin-top: 5px;
-}
-
-.button-group {
-  flex-direction: row;
-  justify-content: center;
-}
-
-.button-group button + button {
-  margin-left: 10px;
-}
+/*@import '@/assets/css/components/registration.css';*/
 </style>
