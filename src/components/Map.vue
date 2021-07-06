@@ -34,7 +34,12 @@ export default {
   },
   watch: {
     showPlayer() {
-      this.playerMarker = TwoGis.marker(this.playerCoords);
+      this.playerMarker = TwoGis.marker(this.playerCoords, {
+        icon: TwoGis.icon({
+          iconUrl: '/public/playerMarker.svg',
+          iconSize: [ 30, 30 ],
+        }),
+      });
       this.playerMarker.addTo(this.map);
     },
   },
