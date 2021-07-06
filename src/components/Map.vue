@@ -27,7 +27,9 @@ export default {
       if (this.showPlayer) {
         this.playerMarker.setLatLng([ latitude, longitude ]);
       }
+
       if (!this.showPlayer) this.showPlayer = true;
+
     }, () => {}, { enableHighAccuracy: true });
   },
   watch: {
