@@ -1,5 +1,5 @@
 <template>
-  <div id="map" @click="show"></div>
+  <div id="map"></div>
 </template>
 
 <script>
@@ -20,28 +20,25 @@ export default {
       'zoom': 13,
     });
 
-    navigator.geolocation.watchPosition(position => {
-      const { latitude, longitude } = position.coords;
-      this.playerCoords = [ latitude, longitude ];
+    DG.control.location().addTo(this.map);
 
-      if (this.showPlayer) {
-        this.playerMarker.setLatLng([ latitude, longitude ]);
-      }
-
-      if (!this.showPlayer) this.showPlayer = true;
-
-    }, () => {}, { enableHighAccuracy: true });
+    // navigator.geolocation.watchPosition(position => {
+    //   const { latitude, longitude } = position.coords;
+    //   this.playerCoords = [ latitude, longitude ];
+    //
+    //   if (this.showPlayer) {
+    //     this.playerMarker.setLatLng([ latitude, longitude ]);
+    //   }
+    //
+    //   if (!this.showPlayer) this.showPlayer = true;
+    //
+    // }, () => {}, { enableHighAccuracy: true });
   },
   watch: {
-    showPlayer() {
-      this.playerMarker = TwoGis.marker(this.playerCoords, {
-        icon: TwoGis.icon({
-          iconUrl: '/public/playerMarker.svg',
-          iconSize: [ 30, 30 ],
-        }),
-      });
-      this.playerMarker.addTo(this.map);
-    },
+    // showPlayer() {
+    //   this.playerMarker = TwoGis.marker(this.playerCoords, {});
+    //   this.playerMarker.addTo(this.map);
+    // },
   },
 };
 </script>
