@@ -20,25 +20,27 @@ export default {
       'zoom': 13,
     });
 
-    DG.control.location().addTo(this.map);
+    navigator.geolocation.watchPosition(position => {
+      const { latitude, longitude } = position.coords;
+      this.playerCoords = [ latitude, longitude ];
 
-    // navigator.geolocation.watchPosition(position => {
-    //   const { latitude, longitude } = position.coords;
-    //   this.playerCoords = [ latitude, longitude ];
-    //
-    //   if (this.showPlayer) {
-    //     this.playerMarker.setLatLng([ latitude, longitude ]);
-    //   }
-    //
-    //   if (!this.showPlayer) this.showPlayer = true;
-    //
-    // }, () => {}, { enableHighAccuracy: true });
-  },
-  watch: {
-    // showPlayer() {
-    //   this.playerMarker = TwoGis.marker(this.playerCoords, {});
-    //   this.playerMarker.addTo(this.map);
-    // },
+      if (this.showPlayer) {
+        this.playerMarker.setLatLng([ latitude, longitude ]);
+      }
+
+      if (!this.showPlayer) {
+        this.playerMarker = TwoGis.marker(this.playerCoords, {
+          icon: TwoGis.divIcon({
+            className: 'player-marker',
+            iconSize: [ 20, 20 ],
+          }),
+        });
+        this.playerMarker.addTo(this.map);
+
+        this.showPlayer = true;
+      }
+
+    }, () => {}, { enableHighAccuracy: true });
   },
 };
 </script>
