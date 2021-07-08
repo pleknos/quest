@@ -117,6 +117,7 @@ export default {
       this.card++;
     },
     prevCard() {
+
       this.card--;
     },
     setValue(field, event) {
