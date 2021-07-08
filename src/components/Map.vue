@@ -27,7 +27,7 @@ export default {
         {
           id: 1,
           coords: [ 55.876423, 38.468773 ],
-          question: 'Вопрос 1',
+          question: 'Как какать?',
           answerType: 'text',
           name: 'Точка 1',
           active: false,
@@ -35,7 +35,7 @@ export default {
         {
           id: 2,
           coords: [ 55.878353, 38.470219 ],
-          question: 'Вопрос 2',
+          question: 'Как можно нести воду в решете?',
           answerType: 'text',
           name: 'Точка 2',
           active: false,
@@ -43,7 +43,7 @@ export default {
         {
           id: 3,
           coords: [ 55.877447, 38.465088 ],
-          question: 'Вопрос 3',
+          question: 'Что у Бориса впереди, а у Глеба сзади?',
           answerType: 'text',
           name: 'Точка 3',
           active: false,
