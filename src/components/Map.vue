@@ -49,16 +49,7 @@ export default {
           active: false,
         },
       ],
-      activeTargets: [
-        { id: 1, coords: [ 55.876423, 38.468773 ], question: 'Как какать?', answerType: 'text', name: 'Точка 1' },
-        {
-          id: 2,
-          coords: [ 55.877447, 38.465088 ],
-          question: 'Ты зачем это сделал?',
-          answerType: 'text',
-          name: 'Точка 3',
-        },
-      ],
+      activeTargets: [],
     };
   },
   mounted() {
