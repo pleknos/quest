@@ -1,108 +1,115 @@
 .input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .input-group:not(:last-of-type) {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .input-group label {
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .input-group label .small {
-  font-size: 10px;
-  font-weight: 400;
-  text-transform: lowercase;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: lowercase;
 }
 
 .input-group input {
-  width: 80%;
-  padding: 5px 10px;
-  margin-top: 5px;
+    width: 80%;
+    padding: 5px 10px;
+    margin-top: 5px;
 
-  border: 2px solid var(--color-blue);
+    border: 2px solid var(--color-blue);
 }
 
 .input-group input:focus {
-  border-color: var(--color-green);
-  outline: 1px solid var(--color-green);
+    border-color: var(--color-green);
+    outline: 1px solid var(--color-green);
 }
 
 .button-group {
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .button-group .btn + .btn {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 .card {
-  min-height: 90vh;
-  margin: 10px;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  padding: 15px 10px;
-  justify-content: center;
+    min-height: 90vh;
+    margin: 10px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    justify-content: center;
 }
 
 .card h2 {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .btn {
-  display: block;
-  padding: 6px 15px;
+    display: block;
+    padding: 6px 15px;
 
-  text-transform: uppercase;
-  text-decoration: none;
-  font-size: 14px;
-  line-height: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
 
-  background-color: transparent;
-  color: var(--color-black);
-  border: 2px solid var(--color-blue);
+    background-color: transparent;
+    color: var(--color-black);
+    border: 2px solid var(--color-blue);
 
-  cursor: pointer;
+    cursor: pointer;
 
-  transition: background-color .5s;
+    transition: background-color .5s;
 }
 
 .btn:hover {
-  background-color: var(--color-blue-transparent);
+    background-color: var(--color-blue-transparent);
 }
 
 .btn.btn-green {
-  border-color: var(--color-green);
+    border-color: var(--color-green);
 }
 
 .btn.btn-green:hover {
-  background-color: var(--color-green-transparent)
+    background-color: var(--color-green-transparent)
 }
 
 .btn.btn-yellow {
-  border-color: var(--color-yellow);
+    border-color: var(--color-yellow);
 }
 
 .btn.btn-yellow:hover {
-  background-color: var(--color-yellow-transparent)
+    background-color: var(--color-yellow-transparent)
 }
 
 .btn.btn-red {
-  border-color: var(--color-red);
+    border-color: var(--color-red);
 }
 
 .btn.btn-red:hover {
-  background-color: var(--color-red-transparent)
+    background-color: var(--color-red-transparent)
+}
+
+@media (min-width: 769px) {
+    .card {
+        max-width: 90vw;
+    }
 }

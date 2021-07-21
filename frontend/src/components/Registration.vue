@@ -78,6 +78,7 @@ import InputMask from 'inputmask';
 import { mapState, mapActions } from 'vuex';
 
 import { server } from '@/url.json';
+import { nextTick } from 'vue';
 
 export default {
   data() {
@@ -123,7 +124,7 @@ export default {
       this.card++;
     },
     prevCard() {
-      this.card--;
+      --this.card;
     },
     setValue(field, event) {
       if (event.target.type === 'checkbox') {
@@ -133,12 +134,20 @@ export default {
       }
     },
   },
-  mounted() {
-    InputMask().mask('input[type="tel"]');
+  watch: {
+    card(value) {
+      console.log(value);
+      if (value === 2) {
+        nextTick(() => {
+          InputMask().mask(document.querySelectorAll('input[type="tel"]'));
+        });
+
+      }
+    },
   },
 };
 </script>
 
-<style scoped>
-/*@import '@/assets/css/components/registration.css';*/
+<style>
+@import '@/assets/css/components/registration.css';
 </style>
