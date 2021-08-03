@@ -11,6 +11,12 @@ export class User {
   email: string;
 
   @Column()
+  name: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
   password: string;
 
   @Column()

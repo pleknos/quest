@@ -14,6 +14,11 @@
              id="password" @change="setValue('Password', $event)" required/>
     </div>
 
+    <div class="input-group">
+      <label class="small" for="agremeent">Я принимаю условия <a href="/agreement" target="_blank">Пользовательского соглашения</a></label>
+      <input type="checkbox" id="agremeent" required>
+    </div>
+
     <div class="input-group button-group">
       <router-link class="btn btn-prev" to="/">Назад</router-link>
       <button type="submit" class="btn btn-next">Вперёд</button>
@@ -56,13 +61,13 @@
 
     <div class="input-group">
       <label for="players">Количество Игроков</label>
-      <input type="number" :value="user.players" placeholder="Количество взрослых в команде"
-             id="players" @change="setValue('Players', $event)" required/>
+      <input type="number" :value="user.players" placeholder="Количество игроков в команде"
+             id="players" @change="setValue('Players', $event)" min="2" max="6" required/>
     </div>
 
     <div class="input-group">
       <label for="children">Есть дети</label>
-      <input type="checkbox" :checked="user.children" placeholder="Количество детей в команде" id="children"
+      <input type="checkbox" :checked="user.children" id="children"
              @change="setValue('Children', $event)">
     </div>
 
@@ -136,12 +141,10 @@ export default {
   },
   watch: {
     card(value) {
-      console.log(value);
       if (value === 2) {
         nextTick(() => {
           InputMask().mask(document.querySelectorAll('input[type="tel"]'));
         });
-
       }
     },
   },

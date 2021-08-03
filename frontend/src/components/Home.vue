@@ -6,7 +6,7 @@
       <router-link to="/map" class="btn" v-if="user.token && isStarted">Карта</router-link>
       <div v-if="user.token && !isStarted">
         <h2>Вы успешно зарегистрировались!</h2>
-        <p>Теперь вы можете расслабиться и ожидать начала фестиваля</p>
+        <p>Теперь вы можете расслабиться и подождать начала фестиваля</p>
       </div>
     </div>
   </section>
