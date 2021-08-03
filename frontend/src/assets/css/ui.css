@@ -9,6 +9,7 @@
 }
 
 .input-group label {
+    user-select: none;
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
@@ -16,6 +17,12 @@
 
 .input-group label .small {
     font-size: 10px;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.input-group label.small {
+    font-size: 12px;
     font-weight: 400;
     text-transform: lowercase;
 }
@@ -37,6 +44,10 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.button-group .btn {
+    margin-bottom: 10px;
 }
 
 .button-group .btn + .btn {
