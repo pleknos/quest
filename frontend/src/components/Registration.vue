@@ -15,7 +15,8 @@
     </div>
 
     <div class="input-group">
-      <label class="small" for="agremeent">Я принимаю условия <a href="/agreement" target="_blank">Пользовательского соглашения</a></label>
+      <label class="small" for="agremeent">Я принимаю условия <a href="/agreement" target="_blank">Пользовательского
+        соглашения</a></label>
       <input type="checkbox" id="agremeent" required>
     </div>
 
@@ -150,7 +151,3 @@ export default {
   },
 };
 </script>
-
-<style>
-@import '@/assets/css/components/registration.css';
-</style>

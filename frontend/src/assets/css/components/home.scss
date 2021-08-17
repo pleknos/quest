@@ -1,0 +1,20 @@
+section.home {
+  .btn + .btn {
+    margin-top: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .btn {
+      padding: 20px 80px;
+      font-size: 40px;
+      line-height: 44px;
+
+      border-width: 5px;
+    }
+
+    .btn + .btn {
+      margin-top: 20px;
+    }
+  }
+}
+
