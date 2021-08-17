@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: () => ({
     email: '',
-    password: '',
+    // password: '',
 
     name: '',
     phone: '',
@@ -32,9 +32,9 @@ export default {
     setEmail(state, payload) {
       state.email = payload;
     },
-    setPassword(state, payload) {
-      state.password = payload;
-    },
+    // setPassword(state, payload) {
+    //   state.password = payload;
+    // },
     setToken(state, payload) {
       state.token = payload;
     },
@@ -58,9 +58,9 @@ export default {
     setEmail({ commit }, data) {
       commit('setEmail', data);
     },
-    setPassword({ commit }, data) {
-      commit('setPassword', data);
-    },
+    // setPassword({ commit }, data) {
+    //   commit('setPassword', data);
+    // },
     setToken({ commit }, data) {
       commit('setToken', data);
     },
