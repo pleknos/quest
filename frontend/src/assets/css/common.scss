@@ -1,0 +1,46 @@
+html {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  color: var(--color-black);
+  font-size: 14px;
+}
+
+* {
+  font-family: inherit;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+
+.agreement {
+  max-width: 720px;
+  text-align: left;
+  padding: 20px 15px;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 15px 0;
+}
+
+p {
+  padding: 10px 0;
+}
+
+ol {
+  padding: 10px 0;
+  list-style: decimal;
+}
+
+li {
+  padding: 10px 0;
+
+  ol, ul {
+    padding-left: 7px;
+  }
+}

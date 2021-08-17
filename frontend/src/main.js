@@ -7,12 +7,14 @@ import Home from './components/Home.vue';
 import Registration from './components/Registration.vue';
 import Map from './components/Map.vue';
 import Agreement from './components/Agreement.vue';
+import Login from './components/Login.vue';
 import App from './App.vue';
 
 const routes = [
   { path: '/', component: Home },
   { path: '/register', component: Registration },
-  // { path: '/map', component: Map },
+  { path: '/login', component: Login },
+  { path: '/map', component: Map },
   { path: '/agreement', component: Agreement },
 ];
 
