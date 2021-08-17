@@ -68,7 +68,7 @@
 
     <div class="input-group">
       <label for="children">Есть дети</label>
-      <input type="checkbox" :checked="user.children" id="children"
+      <input type="checkbox" :checked="user.children || false" id="children"
              @change="setValue('Children', $event)">
     </div>
 
