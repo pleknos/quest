@@ -10,8 +10,8 @@
 
     <div class="input-group">
       <label for="password">Пароль</label>
-      <input type="password" :value="user.password" placeholder="Введите пароль"
-             id="password" @change="setValue('Password', $event)" required/>
+      <input type="password" v-model="password" placeholder="Введите пароль"
+             id="password" required/>
     </div>
 
     <div class="input-group">
@@ -90,6 +90,7 @@ export default {
   data() {
     return {
       card: 1,
+      password: '',
     };
   },
   computed: {
@@ -98,7 +99,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('user', ['setName', 'setPhone', 'setAge', 'setPlayers', 'setChildren', 'setToken']),
+    ...mapActions('user', ['setName', 'setPhone', 'setAge', 'setPlayers', 'setChildren', 'setToken', 'setEmail']),
     submitCard() {
       if (this.user.age < 18 && this.card === 2) {
         alert('Возраст капитана команды должен быть от 18 лет');
@@ -110,7 +111,7 @@ export default {
     async submitRegistration() {
       const response = await fetch(`${server}/api/auth/register`, {
         method: 'POST',
-        body: JSON.stringify(this.user),
+        body: JSON.stringify({ ...this.user, password: this.password }),
         headers: {
           'Content-type': 'application/json',
         },
