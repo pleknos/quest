@@ -28,6 +28,11 @@ h1 {
   padding: 15px 0;
 }
 
+h3 {
+  padding: 10px 0;
+  font-weight: 600;
+}
+
 p {
   padding: 10px 0;
 }
@@ -35,6 +40,12 @@ p {
 ol {
   padding: 10px 0;
   list-style: decimal;
+}
+
+ul {
+  padding: 10px 5px 10px 35px;
+  list-style: disc;
+  text-align: left;
 }
 
 li {
