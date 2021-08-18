@@ -1,8 +1,9 @@
 frontend/node_modules
 backend/node_modules
 .DS_Store
-dist
-dist-ssr
+*/dist
+*/dist-ssr
 *.local\
 .idea
-.env
+*/.env
+
