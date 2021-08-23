@@ -28,6 +28,10 @@ export class UserService {
     }
   }
 
+  find():Promise<User[]> {
+    return this.userRepository.find({select: ['id', 'name', 'email', 'phone']});
+  }
+
   findOneByEmail(email: string): Promise<User> {
     try {
       return this.userRepository.findOne({ email });
@@ -35,6 +39,4 @@ export class UserService {
       throw error;
     }
   }
-
-
 }
