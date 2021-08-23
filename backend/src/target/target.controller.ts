@@ -7,9 +7,21 @@ export class TargetController {
     private targetService: TargetService,
   ) {}
 
+  @Get()
+  async getPublic() {
+    if (process.env.STARTED) {
+      return this.targetService.findPublic();
+    } else {
+      return 'Не лезь, подумой';
+    }
+  }
+
   @Get(':id')
   async get(@Param('id') id: number) {
-    console.log(id);
-    return this.targetService.findOne(id);
+    if (process.env.STARTED) {
+      return this.targetService.findOne(id);
+    } else {
+      return 'Не лезь, подумой';
+    }
   }
 }

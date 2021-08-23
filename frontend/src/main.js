@@ -14,9 +14,12 @@ const routes = [
   { path: '/', component: Home },
   { path: '/register', component: Registration },
   { path: '/login', component: Login },
-  { path: '/map', component: Map },
   { path: '/agreement', component: Agreement },
 ];
+
+if (store.state.event.isStarted) {
+  routes.push({ path: '/map', component: Map });
+}
 
 const router = createRouter({
   history: createWebHistory(),

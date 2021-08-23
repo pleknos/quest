@@ -36,9 +36,10 @@
 
 <script>
 import * as TwoGis from '2gis-maps';
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 import { server } from '@/url.json';
+import { nextTick } from 'vue';
 
 export default {
   data() {
@@ -47,37 +48,37 @@ export default {
       showPlayer: false,
       playerCoords: [55.86, 38.45],
       playerMarker: null,
-      targets: [{
-        id: 1,
-        latitude: 55.85296,
-        longitude: 38.436185,
-        name: 'Дом Зотова - ул Советская, 74',
-      }, {
-        id: 2,
-        latitude: 55.878571,
-        longitude: 38.45511,
-        name: '10 школа - ул 8 марта, 4',
-      }, {
-        id: 3,
-        latitude: 55.880887,
-        longitude: 38.464815,
-        name: 'Дом А.И. Морозова',
-      }],
       activeTarget: null,
       sendSuccess: null,
       sendFail: null,
+      markers: [],
     };
   },
   computed: {
     ...mapState({
       user: state => state.user,
+      isStarted: state => state.event.isStarted,
+      targets: state => state.targets.list,
+      questFinished: state => state.targets.finished,
     }),
   },
-  mounted() {
+  async mounted() {
     this.map = TwoGis.map('map', {
       'center': [55.86, 38.45],
       'zoom': 13,
     });
+
+    if (this.targets.length === 0 && !this.questFinished) {
+      const response = await fetch(`${server}/api/target/`, {
+        headers: {
+          'Authorization': `Bearer ${this.user.token}`,
+        },
+      });
+
+      const responseJson = await response.json();
+
+      this.setTargets(responseJson);
+    }
 
     for (const target of this.targets) {
       const marker = TwoGis.marker([target.latitude, target.longitude], {
@@ -90,7 +91,8 @@ export default {
       });
 
       marker.target = target;
-      target.marker = marker;
+
+      this.markers.push(marker);
 
       marker.addEventListener('click', ({ target }) => {
         this.handleMarkerClick(target.target);
@@ -126,6 +128,7 @@ export default {
     }, { enableHighAccuracy: true });
   },
   methods: {
+    ...mapActions('targets', ['setTargets', 'removeTarget', 'setMarker']),
     async handleMarkerClick(target) {
       const response = await fetch(`${server}/api/target/${target.id}`, {
         headers: {
@@ -163,8 +166,11 @@ export default {
 
       if (responseJson.success) {
         this.sendSuccess = true;
-        this.targets.forEach(target => {
-          if (target.id === activeTarget.id) target.marker.remove();
+
+        this.removeTarget(activeTarget.id);
+        this.markers.forEach(marker => {
+          console.log(marker);
+          if (marker.target.id === activeTarget.id) marker.remove();
         });
       } else {
         this.sendFail = true;

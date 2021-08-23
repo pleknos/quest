@@ -10,8 +10,8 @@
         <h3>11 сентября посетите одну из стартовых точек «Торгового города»:</h3>
         <ul>
           <li>Пожарный переулок, 1 — кофейня «Steam Coffee»</li>
-          <li>Ул. 3-го Интернационала, 73 (этаж 2) — офис-продаж «МейТан»</li>
-          <li>Ул. Советской Конституции 2А — ресторан «Gourmet»</li>
+          <li>Ул. 3-го Интернационала, 73 (этаж 2) — офис продаж «МейТан»</li>
+          <li>Ул. Советской Конституции, 2А — ресторан «Gourmet»</li>
         </ul>
         <p>Вся информация по телефону: 8(916)818-80-69</p>
       </div>
@@ -23,14 +23,10 @@
 import { mapState } from 'vuex';
 
 export default {
-  data() {
-    return {
-      isStarted: false,
-    };
-  },
   computed: {
     ...mapState({
       user: state => state.user,
+      isStarted: state => state.event.isStarted,
     }),
   },
 };
