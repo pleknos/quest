@@ -4,6 +4,7 @@
       <router-link to="/register" class="btn" v-if="!user.token">Регистрация</router-link>
       <router-link to="/login" class="btn" v-if="!user.token && isStarted">Войти</router-link>
       <router-link to="/map" class="btn" v-if="user.token && isStarted">Карта</router-link>
+      <router-link to="/about" class="btn" v-if="!user.token  || isStarted">О нас</router-link>
       <div class="home-info" v-if="user.token && !isStarted">
         <h2>Вы успешно зарегистрировались!</h2>
         <p>Теперь вы можете расслабиться и подождать начала фестиваля</p>

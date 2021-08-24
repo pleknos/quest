@@ -8,6 +8,7 @@ import Registration from './components/Registration.vue';
 import Map from './components/Map.vue';
 import Agreement from './components/Agreement.vue';
 import Login from './components/Login.vue';
+import About from './components/About.vue';
 import App from './App.vue';
 
 const routes = [
@@ -15,6 +16,7 @@ const routes = [
   { path: '/register', component: Registration },
   { path: '/login', component: Login },
   { path: '/agreement', component: Agreement },
+  { path: '/about', component: About },
 ];
 
 if (store.state.event.isStarted) {
