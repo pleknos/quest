@@ -15,6 +15,10 @@
           <li>Ул. Советской Конституции, 2А — ресторан «Gourmet»</li>
         </ul>
         <p>Вся информация по телефону: 8(916)818-80-69</p>
+        <div class="socials">
+          <a href="https://vk.com/bogorodsk_fest" target="_blank" class="social vk"></a>
+          <a href="https://www.instagram.com/bogorodsk_fest/" target="_blank" class="social fb"></a>
+        </div>
       </div>
     </div>
   </section>

@@ -25,6 +25,11 @@
 
     <p>Наслаждайтесь праздником, никуда не спешите — наш город открыт для вас!</p>
 
+    <div class="socials">
+      <a href="https://vk.com/bogorodsk_fest" target="_blank" class="social vk"></a>
+      <a href="https://www.instagram.com/bogorodsk_fest/" target="_blank" class="social fb"></a>
+    </div>
+
     <div class="buttons">
       <router-link class="btn btn-prev" to="/">Назад</router-link>
     </div>
