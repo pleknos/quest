@@ -4,7 +4,7 @@ export const databaseProviders = [
   {
     provide: 'DATABASE_CONNECTION',
     useFactory: async () => await createConnection({
-      type: 'mysql',
+      type: 'mariadb',
       host: process.env.DATABASE_HOST,
       port: 3306,
       username: process.env.DATABASE_USER,
