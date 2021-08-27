@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-import { hash }  from 'bcrypt'
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -12,7 +12,7 @@ export class UserService {
 
   async create(userData: Partial<User>): Promise<User> {
     try {
-      userData.password = await hash(userData.password, 10)
+      userData.password = await hash(userData.password, 10);
       const newUser = this.userRepository.create(userData);
       return this.userRepository.save(newUser);
     } catch (error) {
@@ -28,8 +28,8 @@ export class UserService {
     }
   }
 
-  find():Promise<User[]> {
-    return this.userRepository.find({select: ['id', 'name', 'email', 'phone']});
+  find(): Promise<User[]> {
+    return this.userRepository.find();
   }
 
   findOneByEmail(email: string): Promise<User> {
