@@ -1,7 +1,6 @@
 import { Body, Controller, ForbiddenException, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Public } from '../auth/decorators/public.decorator';
-import { User } from './user.entity';
 import * as js2xmlparser from 'js2xmlparser';
 
 @Controller('user')

@@ -1,19 +1,64 @@
-section.home {
-  .btn + .btn {
-    margin-top: 10px;
+.home {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("src/assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  & > .card {
+    justify-content: space-between;
   }
 
-  @media (min-width: 768px) {
-    .btn {
-      padding: 20px 80px;
-      font-size: 40px;
-      line-height: 44px;
+  .home-top {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-      border-width: 5px;
-    }
+  &-240 {
+    width: 220px;
+    height: auto;
+  }
 
-    .btn + .btn {
-      margin-top: 20px;
+  &-zolot {
+    width: 50px;
+    height: auto;
+  }
+
+  &-bottom {
+    width: 300px;
+    height: auto;
+  }
+
+  &-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-btn {
+    width: 300px;
+    height: 109px;
+
+    line-height: 3;
+    font-size: 30px;
+    font-weight: 700;
+    text-shadow: 3px 3px #750a83;
+
+    color: white;
+    text-decoration: none;
+    background-image: url("src/assets/button1.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &:hover {
+      filter: brightness(1.2);
     }
   }
 }
