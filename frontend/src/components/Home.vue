@@ -1,10 +1,12 @@
 <template>
   <section class="home">
     <div class="card">
+
       <div class="home-top" v-if="!user.token">
         <img src="/src/assets/240.png" alt="240 лет БО" class="home-240">
         <img src="/src/assets/zolotar.png" alt="Золотарь" class="home-zolot">
       </div>
+      <div v-else></div>
 
       <div class="home-center">
         <router-link to="/register" class="home-btn" v-if="!user.token">Регистрация</router-link>
@@ -29,6 +31,7 @@
       </div>
 
       <img src="/src/assets/bottom.png" alt="Партнеры" class="home-bottom" v-if="!user.token">
+      <div v-else></div>
     </div>
   </section>
 </template>
