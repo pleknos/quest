@@ -2,8 +2,8 @@
   <section class="home">
     <div class="card">
       <div class="home-top" v-if="!user.token">
-        <img src="@/assets/240.png" alt="240 лет БО" class="home-240">
-        <img src="@/assets/zolotar.png" alt="Золотарь" class="home-zolot">
+        <img src="/src/assets/240.png" alt="240 лет БО" class="home-240">
+        <img src="/src/assets/zolotar.png" alt="Золотарь" class="home-zolot">
       </div>
 
       <div class="home-center">
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <img src="@/assets/bottom.png" alt="Партнеры" class="home-bottom" v-if="!user.token">
+      <img src="/src/assets/bottom.png" alt="Партнеры" class="home-bottom" v-if="!user.token">
     </div>
   </section>
 </template>
