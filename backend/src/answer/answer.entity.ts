@@ -11,8 +11,8 @@ export class Answer {
   @Column()
   userId: number;
 
-  @Column()
-  answer: string;
+  @Column({ nullable: true })
+  feedback: string;
 
   @Column()
   selfie: string;

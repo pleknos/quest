@@ -14,6 +14,6 @@ export class TargetService {
   }
 
   findPublic() {
-    return this.targetRepository.find({ select: ['id', 'longitude', 'latitude', 'name'] });
+    return this.targetRepository.find({ select: ['id', 'longitude', 'latitude', 'name', 'adult', 'start'] });
   }
 }

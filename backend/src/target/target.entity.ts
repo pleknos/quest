@@ -8,18 +8,24 @@ export class Target {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   latitude: string;
 
-  @Column()
+  @Column({ nullable: true })
   longitude: string;
 
-  @Column({ length: 1000 })
-  question: string;
+  @Column({ length: 1000, nullable: true })
+  pic: string;
 
   @Column({ length: 1000 })
+  address: string;
+
+  @Column({ length: 1000, nullable: true })
   about: string;
 
-  @Column()
-  answerType: string;
+  @Column({ default: false })
+  adult: boolean;
+
+  @Column({ default: false })
+  start: boolean;
 }

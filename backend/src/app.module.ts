@@ -9,6 +9,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from './filters/all-exceptions.filter';
 import { AnswerModule } from './answer/answer.module';
 import { TargetModule } from './target/target.module';
+import { EventModule } from './event/event.module';
 
 
 initDotenv();
@@ -20,6 +21,7 @@ initDotenv();
     UserModule,
     AnswerModule,
     TargetModule,
+    EventModule,
   ],
   providers: [
     {

@@ -3,4 +3,14 @@ export default {
   state: () => ({
     isStarted: false,
   }),
+  mutations: {
+    setStarted(state, payload) {
+      state.isStarted = payload;
+    },
+  },
+  actions: {
+    setStarted({ commit }, data) {
+      commit('setStarted', data);
+    },
+  },
 };

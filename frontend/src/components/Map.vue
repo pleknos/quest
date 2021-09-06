@@ -9,25 +9,26 @@
 
       <div class="target-about">
         <h3 class="target-title target-name">{{ activeTarget.name }}</h3>
+        <p class="target-address">{{ activeTarget.address }}</p>
         <p class="target-text">{{ activeTarget.about }}</p>
+        <img :src="activeTarget.pic" :alt="`${activeTarget.name} фото`" v-if="activeTarget.pic">
       </div>
-      <div class="target-question">
-        <h3 class="target-title">Вопрос</h3>
-        <p class="target-text">{{ activeTarget.question }}</p>
-      </div>
-      <div class="target-answer">
-        <div class="target-answer_text" v-if="activeTarget.answerType === 'text'">
-          <label for="answer">Ответ</label>
-          <input id="answer" type="text" name="answer" required/>
+
+      <div class="target-answer" v-if="activeTarget.onPoint">
+        <div class="target-answer_text">
+          <label for="feedback">Оставьте отзыв</label>
+          <input id="feedback" type="text" name="feedback"/>
         </div>
         <div class="target-answer_selfie">
           <label for="selfie">Селфи</label>
           <input id="selfie" type="file" name="selfie" accept="image/*" required/>
         </div>
       </div>
-      <div class="input-group button-group target-buttons">
-        <button type="submit" class="btn btn-green">Отправить ответ</button>
+
+      <div class="input-group button-group target-buttons" v-if="activeTarget.onPoint">
+        <button type="submit" class="btn btn-green">Отправить</button>
       </div>
+
     </form>
   </div>
 
@@ -39,7 +40,6 @@ import * as TwoGis from '2gis-maps';
 import { mapActions, mapState } from 'vuex';
 
 import { server } from '@/url.json';
-import { nextTick } from 'vue';
 
 export default {
   data() {
@@ -68,7 +68,7 @@ export default {
       'zoom': 13,
     });
 
-    if (this.targets.length === 0 && !this.questFinished) {
+    if (this.targets.timestamp || (this.targets.length === 0 && !this.questFinished)) {
       const response = await fetch(`${server}/api/target/`, {
         headers: {
           'Authorization': `Bearer ${this.user.token}`,
@@ -81,11 +81,21 @@ export default {
     }
 
     for (const target of this.targets) {
+      let targetClassName = 'target-marker';
+
+      console.log(target);
+
+      if (target.adult) {
+        targetClassName = 'target-marker_adult';
+      } else if (target.start) {
+        targetClassName = 'target-marker_start';
+      }
+
       const marker = TwoGis.marker([target.latitude, target.longitude], {
         popupAnchor: [0, 0],
         icon: TwoGis.divIcon({
-          className: 'target-marker',
-          iconSize: [20, 20],
+          className: targetClassName,
+          iconSize: [30, 30],
           riseOnHover: true,
         }),
       });
@@ -136,16 +146,20 @@ export default {
         },
       });
 
-      this.activeTarget = await response.json();
+      if (this.playerCoords[0] - 0.0005 < parseFloat(target.latitude) && this.playerCoords[0] + 0.0005 > parseFloat(target.latitude) &&
+          this.playerCoords[1] - 0.0005 < parseFloat(target.longitude) && this.playerCoords[1] + 0.0005 > parseFloat(target.longitude)) {
+        this.activeTarget = {
+          ...await response.json(),
+          onPoint: true,
+        };
+      } else {
+        this.activeTarget = {
+          ...await response.json(),
+          onPoint: false,
+        };
+      }
 
-      //   if (latitude - 0.0001 < target.coords[0] && latitude + 0.0001 > target.coords[0] &&
-      //       longitude - 0.0001 < target.coords[1] && longitude + 0.0001 > target.coords[1]) {
-      //     if (!target.active) {
-      //       this.activeTarget = target;
-      //     }
-      //     target.active = true;
-      //   }
-      // }
+
     },
     closeTarget() {
       this.activeTarget = null;
@@ -169,7 +183,6 @@ export default {
 
         this.removeTarget(activeTarget.id);
         this.markers.forEach(marker => {
-          console.log(marker);
           if (marker.target.id === activeTarget.id) marker.remove();
         });
       } else {

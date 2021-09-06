@@ -40,11 +40,30 @@
 import { mapState } from 'vuex';
 
 export default {
+  data() {
+    return {
+      isStarted: false,
+    };
+  },
   computed: {
     ...mapState({
       user: state => state.user,
-      isStarted: state => state.event.isStarted,
+      eventIsStarted: state => state.event.isStarted,
     }),
+  },
+  created() {
+    this.isStarted = this.eventIsStarted;
+
+    this.unsubscribe = this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'event/setStarted') {
+        if (state.event.isStarted !== this.isStarted) {
+          this.isStarted = state.event.isStarted;
+        }
+      }
+    });
+  },
+  beforeDestroy() {
+    this.unsubscribe();
   },
 };
 </script>
