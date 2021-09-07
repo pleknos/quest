@@ -11,7 +11,7 @@ export class TargetController {
 
   @Get()
   async getPublic(@Req() request) {
-    if (await this.eventService.isStarted() || request.user.id === 40) {
+    if (await this.eventService.isStarted() || request.user.id === 40 || request.user.id === 154 || request.user.id === 24) {
       return this.targetService.findPublic();
     } else {
       return 'Не лезь, подумой';
@@ -20,7 +20,7 @@ export class TargetController {
 
   @Get(':id')
   async get(@Req() request, @Param('id') id: number) {
-    if (await this.eventService.isStarted() || request.user.id === 40) {
+    if (await this.eventService.isStarted() || request.user.id === 40 || request.user.id === 154 || request.user.id === 24) {
       return this.targetService.findOne(id);
     } else {
       return 'Не лезь, подумой';
