@@ -1,0 +1,54 @@
+.winners {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  .cols {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+
+  .winner {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid #2c3e50;
+
+    line-height: 1.2;
+
+    .name {
+      font-size: 40px;
+    }
+
+    .count {
+      font-size: 20px;
+    }
+  }
+
+  .winner-targets {
+    margin: 20px 0;
+    display: grid;
+    grid-gap: 10px;
+  }
+
+  .winner-target {
+    display: flex;
+    flex-direction: column;
+
+    .place {
+      padding-bottom: 10px;
+
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    img {
+      display: flex;
+      width: 100%;
+      height: auto;
+    }
+  }
+}

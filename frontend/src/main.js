@@ -10,6 +10,7 @@ import Agreement from './components/Agreement.vue';
 import Login from './components/Login.vue';
 import About from './components/About.vue';
 import App from './App.vue';
+import Winner from './components/Winner.vue';
 
 const routes = [
   { path: '/', component: Home },
@@ -18,6 +19,7 @@ const routes = [
   { path: '/agreement', component: Agreement },
   { path: '/about', component: About },
   { path: '/map', component: Map },
+  { path: '/winners', component: Winner },
 ];
 
 const router = createRouter({

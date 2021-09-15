@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Get, Post, Req, UseInterceptors } from '@nestjs/common';
 import { AnswerService } from './answer.service';
 import { Answer } from './answer.entity';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
@@ -20,7 +20,8 @@ export class AnswerController {
   }
 
   @Get('winners')
-  getWinners() {
+  getWinners(@Req() request) {
+    if (request.user.id !== 40 || request.user.id !== 24) throw new ForbiddenException();
     return this.answerService.getWinners();
   }
 }
