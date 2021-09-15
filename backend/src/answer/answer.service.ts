@@ -40,7 +40,7 @@ export class AnswerService {
           ) as allAnswers
       GROUP BY user_id
       ORDER BY count DESC
+      LIMIT 15
     `);
-
   }
 }
