@@ -1,5 +1,26 @@
 <template>
   <div id="map"></div>
+
+  <div class="loadingio-spinner-wedges-d8f8dabh95w" v-show="isLoading">
+    <div class="ldio-0xpxhl7475d">
+      <div>
+        <div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="target-container" v-if="!geolocation">
     <div class="target">
       <!--      <div class="target-close" @click="closeNotify"></div>-->
@@ -21,7 +42,7 @@
   <div class="target-container" v-if="activeTarget">
     <div class="target-success" v-if="sendSuccess"></div>
 
-    <form class="target" @submit.prevent="sendAnswer($event, activeTarget)" v-else>
+    <form class="target" :class="{inactive: isLoading}" @submit.prevent="sendAnswer($event, activeTarget)" v-else>
       <div class="target-close" @click="closeTarget"></div>
 
       <div class="target-about">
@@ -70,6 +91,7 @@ export default {
       sendFail: null,
       markers: [],
       geolocation: true,
+      isLoading: false,
     };
   },
   computed: {
@@ -161,6 +183,8 @@ export default {
   methods: {
     ...mapActions('targets', ['setTargets', 'removeTarget', 'setMarker']),
     async handleMarkerClick(target) {
+      this.isLoading = true;
+
       const response = await fetch(`${server}/api/target/${target.id}`, {
         headers: {
           'Authorization': `Bearer ${this.user.token}`,
@@ -180,7 +204,7 @@ export default {
         };
       }
 
-
+      this.isLoading = false;
     },
     closeTarget() {
       this.activeTarget = null;
@@ -192,6 +216,8 @@ export default {
       const formData = new FormData(event.target);
       formData.append('targetId', activeTarget.id);
 
+      this.isLoading = true;
+
       const response = await fetch(`${server}/api/answer/`, {
         method: 'POST',
         headers: {
@@ -201,6 +227,8 @@ export default {
       });
 
       const responseJson = await response.json();
+
+      this.isLoading = false;
 
       if (responseJson.success) {
         this.sendSuccess = true;
