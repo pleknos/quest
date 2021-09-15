@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseInterceptors } from '@nestjs/common';
 import { AnswerService } from './answer.service';
 import { Answer } from './answer.entity';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
@@ -17,5 +17,10 @@ export class AnswerController {
   add(@Body() answerData: Answer, @Req() request) {
     const userId = request.user.id;
     return this.answerService.add({ ...answerData, userId });
+  }
+
+  @Get('winners')
+  getWinners() {
+    return this.answerService.getWinners();
   }
 }

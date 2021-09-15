@@ -1,7 +1,24 @@
 <template>
   <div id="map"></div>
-  <div class="target-container" v-if="activeTarget">
+  <div class="target-container" v-if="!geolocation">
+    <div class="target">
+      <!--      <div class="target-close" @click="closeNotify"></div>-->
+      <div class="target-about">
+        <div class="target-text">
+          Для работы приложения необходимо активировать слубу геолокации на вашем телефоне. Также необходимо разрешить
+          доступ к геополакации вашему браузеру.
+        </div>
+        <div class="target-text"><a href="https://support.apple.com/ru-ru/HT207092" target="_blank">Инструкция для
+          IOS</a>
+        </div>
+        <div class="target-text"><a href="https://support.google.com/nexus/answer/3467281?hl=ru" target="_blank">Инструкция
+          для
+          Android</a></div>
+      </div>
+    </div>
+  </div>
 
+  <div class="target-container" v-if="activeTarget">
     <div class="target-success" v-if="sendSuccess"></div>
 
     <form class="target" @submit.prevent="sendAnswer($event, activeTarget)" v-else>
@@ -52,6 +69,7 @@ export default {
       sendSuccess: null,
       sendFail: null,
       markers: [],
+      geolocation: true,
     };
   },
   computed: {
@@ -63,6 +81,11 @@ export default {
     }),
   },
   async mounted() {
+    navigator.geolocation.getCurrentPosition((position) => {
+    }, () => {
+      this.geolocation = false;
+    });
+
     this.map = TwoGis.map('map', {
       'center': [55.86, 38.45],
       'zoom': 13,
@@ -82,8 +105,6 @@ export default {
 
     for (const target of this.targets) {
       let targetClassName = 'target-marker';
-
-      console.log(target);
 
       if (target.adult) {
         targetClassName = 'target-marker_adult';
@@ -163,6 +184,9 @@ export default {
     },
     closeTarget() {
       this.activeTarget = null;
+    },
+    closeNotify() {
+      this.geolocation = true;
     },
     async sendAnswer(event, activeTarget) {
       const formData = new FormData(event.target);
