@@ -21,7 +21,7 @@ export class AnswerController {
 
   @Get('winners')
   getWinners(@Req() request) {
-    if (request.user.id !== 40 || request.user.id !== 24) throw new ForbiddenException();
+    if (request.user.id !== 40 && request.user.id !== 24) throw new ForbiddenException();
     return this.answerService.getWinners();
   }
 }
