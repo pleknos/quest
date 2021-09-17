@@ -24,7 +24,6 @@ export default {
         },
       });
       const responseJson = await response.json();
-      console.log(responseJson.started || false);
       this.setStarted(responseJson.started || false);
     },
   },
