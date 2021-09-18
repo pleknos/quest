@@ -42,7 +42,7 @@ export default {
 
     const responseJson = await response.json();
 
-    this.winners = responseJson.slice(0, 8);
+    this.winners = responseJson.slice(0, 10);
   },
 };
 </script>
