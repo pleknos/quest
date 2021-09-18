@@ -191,8 +191,8 @@ export default {
         },
       });
 
-      if (this.playerCoords[0] - 0.0005 < parseFloat(target.latitude) && this.playerCoords[0] + 0.0005 > parseFloat(target.latitude) &&
-          this.playerCoords[1] - 0.0005 < parseFloat(target.longitude) && this.playerCoords[1] + 0.0005 > parseFloat(target.longitude)) {
+      if (this.playerCoords[0] - 0.0008 < parseFloat(target.latitude) && this.playerCoords[0] + 0.0008 > parseFloat(target.latitude) &&
+          this.playerCoords[1] - 0.0008 < parseFloat(target.longitude) && this.playerCoords[1] + 0.0008 > parseFloat(target.longitude)) {
         this.activeTarget = {
           ...await response.json(),
           onPoint: true,
